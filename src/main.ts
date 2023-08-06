@@ -17,7 +17,7 @@ processor.run(new TypeormDatabase({supportHotBlocks: false}), async (ctx) => {
                 if (!trc.transaction) {
                     ctx.log.fatal(`ERROR: trace came without a parent transaction`)
                     console.log(trc)
-                    process.exit(0)
+                    process.exit(1)
                 }
                 let address = trc.result.address
                 ctx.log.info(`Detected an NFT contract deployment at ${address}`)
