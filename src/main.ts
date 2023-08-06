@@ -4,7 +4,7 @@ import {processor} from './processor'
 import {isErc721} from './isErc721'
 import * as erc721 from './abi/erc721'
 
-processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
+processor.run(new TypeormDatabase({supportHotBlocks: false}), async (ctx) => {
     const knownNftContractsArray: Contract[] = await ctx.store.find(Contract, { where: { isAErc721Duck: true } })
     const knownNftContracts: Map<string, Contract> = new Map(knownNftContractsArray.map(c => [ c.address, c ]))
     const newNftContracts: Map<string, Contract> = new Map()
