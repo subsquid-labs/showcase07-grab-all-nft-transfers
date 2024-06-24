@@ -1,4 +1,3 @@
-import * as ethers from "ethers";
 import * as erc721 from "./abi/erc721";
 
 /**

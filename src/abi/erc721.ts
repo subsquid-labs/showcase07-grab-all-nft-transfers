@@ -1,31 +1,31 @@
 import * as p from '@subsquid/evm-codec'
-import { event, fun, indexed, ContractBase } from '@subsquid/evm-abi'
+import { event, fun, viewFun, indexed, ContractBase } from '@subsquid/evm-abi'
 import type { EventParams as EParams, FunctionArguments, FunctionReturn } from '@subsquid/evm-abi'
 
 export const events = {
-    Approval: event("0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925", {"owner": indexed(p.address), "approved": indexed(p.address), "tokenId": indexed(p.uint256)}),
-    ApprovalForAll: event("0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31", {"owner": indexed(p.address), "operator": indexed(p.address), "approved": p.bool}),
-    Transfer: event("0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef", {"from": indexed(p.address), "to": indexed(p.address), "tokenId": indexed(p.uint256)}),
+    Approval: event("0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925", "Approval(address,address,uint256)", {"owner": indexed(p.address), "approved": indexed(p.address), "tokenId": indexed(p.uint256)}),
+    ApprovalForAll: event("0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31", "ApprovalForAll(address,address,bool)", {"owner": indexed(p.address), "operator": indexed(p.address), "approved": p.bool}),
+    Transfer: event("0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef", "Transfer(address,address,uint256)", {"from": indexed(p.address), "to": indexed(p.address), "tokenId": indexed(p.uint256)}),
 }
 
 export const functions = {
-    approve: fun("0x095ea7b3", {"to": p.address, "tokenId": p.uint256}, ),
-    balanceOf: fun("0x70a08231", {"owner": p.address}, p.uint256),
-    baseURI: fun("0x6c0360eb", {}, p.string),
-    getApproved: fun("0x081812fc", {"tokenId": p.uint256}, p.address),
-    isApprovedForAll: fun("0xe985e9c5", {"owner": p.address, "operator": p.address}, p.bool),
-    name: fun("0x06fdde03", {}, p.string),
-    ownerOf: fun("0x6352211e", {"tokenId": p.uint256}, p.address),
-    "safeTransferFrom(address,address,uint256)": fun("0x42842e0e", {"from": p.address, "to": p.address, "tokenId": p.uint256}, ),
-    "safeTransferFrom(address,address,uint256,bytes)": fun("0xb88d4fde", {"from": p.address, "to": p.address, "tokenId": p.uint256, "_data": p.bytes}, ),
-    setApprovalForAll: fun("0xa22cb465", {"operator": p.address, "approved": p.bool}, ),
-    supportsInterface: fun("0x01ffc9a7", {"interfaceId": p.bytes4}, p.bool),
-    symbol: fun("0x95d89b41", {}, p.string),
-    tokenByIndex: fun("0x4f6ccce7", {"index": p.uint256}, p.uint256),
-    tokenOfOwnerByIndex: fun("0x2f745c59", {"owner": p.address, "index": p.uint256}, p.uint256),
-    tokenURI: fun("0xc87b56dd", {"tokenId": p.uint256}, p.string),
-    totalSupply: fun("0x18160ddd", {}, p.uint256),
-    transferFrom: fun("0x23b872dd", {"from": p.address, "to": p.address, "tokenId": p.uint256}, ),
+    approve: fun("0x095ea7b3", "approve(address,uint256)", {"to": p.address, "tokenId": p.uint256}, ),
+    balanceOf: viewFun("0x70a08231", "balanceOf(address)", {"owner": p.address}, p.uint256),
+    baseURI: viewFun("0x6c0360eb", "baseURI()", {}, p.string),
+    getApproved: viewFun("0x081812fc", "getApproved(uint256)", {"tokenId": p.uint256}, p.address),
+    isApprovedForAll: viewFun("0xe985e9c5", "isApprovedForAll(address,address)", {"owner": p.address, "operator": p.address}, p.bool),
+    name: viewFun("0x06fdde03", "name()", {}, p.string),
+    ownerOf: viewFun("0x6352211e", "ownerOf(uint256)", {"tokenId": p.uint256}, p.address),
+    "safeTransferFrom(address,address,uint256)": fun("0x42842e0e", "safeTransferFrom(address,address,uint256)", {"from": p.address, "to": p.address, "tokenId": p.uint256}, ),
+    "safeTransferFrom(address,address,uint256,bytes)": fun("0xb88d4fde", "safeTransferFrom(address,address,uint256,bytes)", {"from": p.address, "to": p.address, "tokenId": p.uint256, "_data": p.bytes}, ),
+    setApprovalForAll: fun("0xa22cb465", "setApprovalForAll(address,bool)", {"operator": p.address, "approved": p.bool}, ),
+    supportsInterface: viewFun("0x01ffc9a7", "supportsInterface(bytes4)", {"interfaceId": p.bytes4}, p.bool),
+    symbol: viewFun("0x95d89b41", "symbol()", {}, p.string),
+    tokenByIndex: viewFun("0x4f6ccce7", "tokenByIndex(uint256)", {"index": p.uint256}, p.uint256),
+    tokenOfOwnerByIndex: viewFun("0x2f745c59", "tokenOfOwnerByIndex(address,uint256)", {"owner": p.address, "index": p.uint256}, p.uint256),
+    tokenURI: viewFun("0xc87b56dd", "tokenURI(uint256)", {"tokenId": p.uint256}, p.string),
+    totalSupply: viewFun("0x18160ddd", "totalSupply()", {}, p.uint256),
+    transferFrom: fun("0x23b872dd", "transferFrom(address,address,uint256)", {"from": p.address, "to": p.address, "tokenId": p.uint256}, ),
 }
 
 export class Contract extends ContractBase {
