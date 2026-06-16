@@ -1,6 +1,6 @@
 # Showcase squid 07: contract creation scraping
 
-This squid scrapes all NFT contract deployments on Ethereum and gets their Transfer events. See more examples of requesting data with squids on the [showcase page](https://docs.subsquid.io/evm-indexing/configuration/showcase) of Subsquid documentation.
+This squid scrapes all NFT contract deployments on Ethereum and gets their Transfer events. See more examples of requesting data with squids on the [showcase page](https://docs.sqd.dev/en/sdk) of Subsquid documentation.
 
 Dependencies: Node.js, Docker.
 
